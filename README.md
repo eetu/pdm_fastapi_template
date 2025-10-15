@@ -81,6 +81,20 @@ pdm run dev
 
 The API will be available at `http://localhost:8000`
 
+### Docker
+
+Build and run with Docker:
+
+```bash
+# Build the image
+docker build -t pdm-fastapi-template .
+
+# Run the container
+docker run -p 8000:8000 --env-file .env pdm-fastapi-template
+```
+
+The API will be available at `http://localhost:8000`
+
 ### API Documentation
 
 Once running, access the interactive API documentation:
