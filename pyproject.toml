@@ -1,0 +1,37 @@
+[project]
+name = "pdm-fastapi-template"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Eetu Sutinen", email = "eetu.sutinen@gmail.com"},
+]
+dependencies = [
+    "black>=25.9.0",
+    "fastapi[standard]>=0.119.0",
+    "pytest>=8.4.2",
+    "pytest-asyncio>=1.2.0",
+    "pylint>=4.0.1",
+    "pydantic>=2.12.2",
+    "pydantic-settings>=2.11.0",
+    "watchfiles>=1.1.1",
+]
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+dev = {cmd = "watchfiles 'fastapi dev src/main.py' .env"}
+test = {cmd = "pytest src"}
+lint = {composite = ["lint:black", "lint:pylint"]}
+"lint:black" = {cmd = "black --check src"}
+"lint:pylint" = {cmd = "pylint src"}
+format = {cmd = "black src"}
+
+[tool.pylint.messages_control]
+disable = [
+    "redefined-outer-name",  # Allow pytest fixtures as function arguments
+]
