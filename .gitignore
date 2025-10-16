@@ -7,3 +7,5 @@ __pycache__/
 .pdm-python
 
 .env
+
+.DS_Store

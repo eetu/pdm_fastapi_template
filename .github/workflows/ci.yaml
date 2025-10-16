@@ -1,0 +1,23 @@
+name: Python CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: "Run tests"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Python 3.13.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.13.x"
+      - run: pip install pdm
+      - run: pdm install
+      - run: pdm lint
+      - run: pdm test
